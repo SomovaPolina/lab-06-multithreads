@@ -1,3 +1,4 @@
+// Copyright 2021 Polinka <zagigalka_60@mail.ru>
 #include <iostream>
 #include "../picosha2.h"
 
@@ -5,12 +6,13 @@ int main(int argc, char* argv[])
 {
   std::cout << "Input freely. To get hash, input \"hash!\". " << std::endl;
   picosha2::hash256_one_by_one hasher;
-  while(true){
+  while (true){
     hasher.init(); //reset hasher state
-    while(true){
+    while (true){
       std::string line;
       std::getline(std::cin, line);
-      if(line == "hash!"){
+      if (line == "hash!")
+      {
         break;
       }
       hasher.process(line.begin(), line.end());

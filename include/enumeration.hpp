@@ -1,8 +1,6 @@
-//
-// Created by polinka on 13.03.2021.
-//
-#ifndef LAB_06_MULTITHREADS_ENUMERATION_HPP
-#define LAB_06_MULTITHREADS_ENUMERATION_HPP
+// Copyright 2021 Polinka <zagigalka_60@mail.ru>
+#ifndef INCLUDE_ENUMERATION_HPP_
+#define INCLUDE_ENUMERATION_HPP_
 #include <atomic>
 #include <boost/log/trivial.hpp>
 #include <cstdlib>
@@ -54,7 +52,6 @@ void enumeration() {
         << input_rand
         << "] hash is ["
         << hash_string << " ]";
-
     }
   }
 }
@@ -67,4 +64,5 @@ void create_file_json(){
   }
   file_json.close();
 }
-#endif  // LAB_06_MULTITHREADS_ENUMERATION_HPP
+
+#endif  // INCLUDE_ENUMERATION_HPP_

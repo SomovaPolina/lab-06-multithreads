@@ -1,30 +1,62 @@
+// Copyright 2021 Polinka <zagigalka_60@mail.ru>
 #include "../picosha2.h"
 #include <iostream>
 #include <list>
 #include <fstream>
 
 #define PICOSHA2_CHECK_EQUAL(a, b){\
-    if(a == b){\
-        std::cout << "\033[32m" << __FUNCTION__ << "(LINE:" << __LINE__ << ") is succeeded." << "\033[39m" << std::endl;\
+    if (a == b){\
+        std::cout << "\033[32m"    \
+                << __FUNCTION__    \
+                << "(LINE:"        \
+                << __LINE__        \
+                << ") is succeeded." \
+                << "\033[39m"      \
+                << std::endl;\
     }\
-    else{\
-        std::cout << "\033[31m" << __FUNCTION__ << "(LINE:" << __LINE__ << ") is failed.\n\t" << #a << " != " << #b \
-        << "\033[39m" << std::endl;\
+    else                           \
+    {\
+        std::cout << "\033[31m"    \
+                << __FUNCTION__    \
+                << "(LINE:"        \
+                << __LINE__        \
+                << ") is failed.\n\t"\
+                << #a              \
+                << " != "          \
+                << #b \
+        << "\033[39m"              \
+                << std::endl;\
     }\
 }
 #define PICOSHA2_CHECK_EQUAL_BYTES(a, b){\
-    if(is_same_bytes(a, b)){\
-        std::cout << "\033[32m" << __FUNCTION__ << "(LINE:" << __LINE__ << ") is succeeded." << "\033[39m" << std::endl;\
+    if (is_same_bytes(a, b)){\
+        std::cout << "\033[32m"          \
+                << __FUNCTION__          \
+                << "(LINE:"              \
+                << __LINE__              \
+                << ") is succeeded."     \
+                << "\033[39m"            \
+                << std::endl;\
     }\
-    else{\
-        std::cout << "\033[31m" << __FUNCTION__ << "(LINE:" << __LINE__ << ") is failed.\n\t" << #a << " != " << #b \
-        << "\033[39m" << std::endl;\
+    else                                 \
+    {\
+        std::cout << "\033[31m"          \
+                << __FUNCTION__          \
+                << "(LINE:"              \
+                << __LINE__              \
+                << ") is failed.\n\t"    \
+                << #a                    \
+                << " != "                \
+                << #b \
+        << "\033[39m"                    \
+                << std::endl;\
     }\
 }
 
 template<typename InIter1, typename InIter2>
 bool is_same_bytes(InIter1 first1, InIter1 last1, InIter2 first2, InIter2 last2){
-    if(std::distance(first1, last1) != std::distance(first2, last2)){
+    if (std::distance(first1, last1) != std::distance(first2, last2))
+  {
         return false;
     }
     return std::search(first1, last1, first2, last2) != last1;
@@ -39,16 +71,21 @@ template<typename OutIter>
 void input_hex(std::istream& is, OutIter first, OutIter last){
     char c;
     std::vector<char> buffer;
-    while(first != last){
-        if(buffer.size() == 2){
+    while (first != last)
+    {
+        if (buffer.size() == 2)
+      {
             *(first++) = (buffer.front()*16+buffer.back());
             buffer.clear();
         }
         is >> c;
-        if('0' <= c && c <= '9'){
+        if ('0' <= c && c <= '9')
+        {
             buffer.push_back(c-'0');
-        }else
-        if('a' <= c && c <= 'f'){
+        }
+        else
+        if ('a' <= c && c <= 'f')
+        {
             buffer.push_back(c-'a'+10);
         }
     }

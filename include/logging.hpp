@@ -1,13 +1,11 @@
-//
-// Created by polinka on 13.03.2021.
-//
-
-#ifndef LAB_06_MULTITHREADS_LOGGING_HPP
-#define LAB_06_MULTITHREADS_LOGGING_HPP
+// Copyright 2021 Polinka <zagigalka_60@mail.ru>
+#ifndef INCLUDE_LOGGING_HPP_
+#define INCLUDE_LOGGING_HPP_
 #include <boost/log/expressions/keyword_fwd.hpp>
 #include <boost/log/expressions/keyword.hpp>
 #include <boost/log/expressions/attr_fwd.hpp>
 #include <boost/log/expressions/attr.hpp>
+#include <string>
 
 //BOOST_LOG_ATTRIBUTE_KEYWORD(timeline, "Timeline", attrs::timer::value_type);
 const unsigned ten_MiB = 10 * 1024 * 1024;
@@ -15,7 +13,6 @@ void init()
 {
 
   const std::string format = "%TimeStamp% <%Severity%> (%ThreadID%): %Message%";
-
   auto sink_to_file_trace = boost::log::add_file_log(
       boost::log::keywords::file_name = "logs/trace/log_trace_%N.log",
       boost::log::keywords::rotation_size = ten_MiB,
@@ -37,6 +34,6 @@ void init()
 
   boost::log::add_common_attributes();
 
-
 }
+
 #endif  // LAB_06_MULTITHREADS_LOGGING_HPP
