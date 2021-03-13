@@ -22,7 +22,7 @@
 bool work = true;
 std::vector<nlohmann::json> json_value;
 nlohmann::json j;
-static std::string filename;
+Static std::string filename;
 
 void enumeration() {
   const std::string null_string = "0000";
