@@ -32,6 +32,5 @@ void init()
       boost::log::trivial::severity == boost::log::trivial::info);
 
   boost::log::add_common_attributes();
-
 }
 #endif  // INCLUDE_LOGGING_HPP_

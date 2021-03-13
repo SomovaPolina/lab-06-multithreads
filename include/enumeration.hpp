@@ -19,11 +19,10 @@
 #include <locale>
 #include <boost/log/support/date_time.hpp>
 #include <boost/date_time/gregorian/greg_month.hpp>
-#include <sstream>
 bool work = true;
 std::vector<nlohmann::json> json_value;
 nlohmann::json j;
-std::string filename;
+static std::string filename;
 
 void enumeration() {
   const std::string null_string = "0000";

@@ -54,7 +54,8 @@
 }
 
 template<typename InIter1, typename InIter2>
-bool is_same_bytes(InIter1 first1, InIter1 last1, InIter2 first2, InIter2 last2){
+bool is_same_bytes(InIter1 first1, InIter1 last1,
+                   InIter2 first2, InIter2 last2){
     if (std::distance(first1, last1) != std::distance(first2, last2))
   {
         return false;
@@ -64,7 +65,8 @@ bool is_same_bytes(InIter1 first1, InIter1 last1, InIter2 first2, InIter2 last2)
 
 template<typename InContainer1, typename InContainer2>
 bool is_same_bytes(const InContainer1& bytes1, const InContainer2& bytes2){
-    return is_same_bytes(bytes1.begin(), bytes1.end(), bytes2.begin(), bytes2.end());
+    return is_same_bytes(bytes1.begin(), bytes1.end(),
+                       bytes2.begin(), bytes2.end());
 }
 
 template<typename OutIter>
@@ -82,8 +84,7 @@ void input_hex(std::istream& is, OutIter first, OutIter last){
         if ('0' <= c && c <= '9')
         {
             buffer.push_back(c-'0');
-        }
-        else
+        }else
         if ('a' <= c && c <= 'f')
         {
             buffer.push_back(c-'a'+10);
@@ -92,7 +93,8 @@ void input_hex(std::istream& is, OutIter first, OutIter last){
 }
 
 template<typename OutIter>
-void hex_string_to_bytes(const std::string& hex_str, OutIter first, OutIter last){
+void hex_string_to_bytes(const std::string& hex_str,
+                         OutIter first, OutIter last){
     assert(hex_str.length() >= 2*std::distance(first, last));
     std::istringstream iss(hex_str);
     input_hex(iss, first, last);
@@ -129,15 +131,20 @@ const std::pair<std::string, std::string> sample_message_list[sample_size] = {
 };
 
 void test(){
-    for(std::size_t i = 0; i < sample_size; ++i){
+    for (std::size_t i = 0; i < sample_size; ++i){
         std::string src_str = sample_message_list[i].first;
-        std::cout << "src_str: " << src_str  << " size: " << src_str.length() << std::endl;
+        std::cout << "src_str: "
+                  << src_str
+                  << " size: "
+                  << src_str.length()
+                  << std::endl;
         std::string ans_hex_str = sample_message_list[i].second;
         std::vector<unsigned char> ans(picosha2::k_digest_size);
         hex_string_to_bytes(ans_hex_str, ans);
         {
             std::vector<unsigned char> hash(picosha2::k_digest_size);
-            picosha2::hash256(src_str.begin(), src_str.end(), hash.begin(), hash.end());
+            picosha2::hash256(src_str.begin(), src_str.end(),
+                              hash.begin(), hash.end());
             PICOSHA2_CHECK_EQUAL_BYTES(ans, hash);
         }
         {
@@ -152,13 +159,16 @@ void test(){
         }
         {
             unsigned char hash_c_array[picosha2::k_digest_size];
-            picosha2::hash256(src_str.begin(), src_str.end(), hash_c_array, hash_c_array+picosha2::k_digest_size);
-            std::vector<unsigned char> hash(hash_c_array, hash_c_array+picosha2::k_digest_size);
+            picosha2::hash256(src_str.begin(), src_str.end(),hash_c_array,
+                              hash_c_array+picosha2::k_digest_size);
+            std::vector<unsigned char> hash(hash_c_array,
+                                            hash_c_array+picosha2::k_digest_size);
             PICOSHA2_CHECK_EQUAL_BYTES(ans, hash);
         }
         {
             std::list<unsigned char> hash(picosha2::k_digest_size);
-            picosha2::hash256(src_str.begin(), src_str.end(), hash.begin(), hash.end());
+            picosha2::hash256(src_str.begin(), src_str.end(),
+                              hash.begin(), hash.end());
             PICOSHA2_CHECK_EQUAL_BYTES(ans, hash);
         }
         {
@@ -168,7 +178,8 @@ void test(){
         }
         {
             std::string hash_hex_str;
-            picosha2::hash256_hex_string(src_str.begin(), src_str.end(), hash_hex_str);
+            picosha2::hash256_hex_string(src_str.begin(), src_str.end(),
+                                         hash_hex_str);
             PICOSHA2_CHECK_EQUAL(ans_hex_str, hash_hex_str);
         }
         {
@@ -189,7 +200,8 @@ void test(){
         std::vector<unsigned char> src_vect(src_str.begin(), src_str.end());
         {
             std::vector<unsigned char> hash(picosha2::k_digest_size);
-            picosha2::hash256(src_vect.begin(), src_vect.end(), hash.begin(), hash.end());
+            picosha2::hash256(src_vect.begin(), src_vect.end(),
+                              hash.begin(), hash.end());
             PICOSHA2_CHECK_EQUAL_BYTES(ans, hash);
         }
         {
@@ -199,7 +211,8 @@ void test(){
         }
         {
             std::list<unsigned char> hash(picosha2::k_digest_size);
-            picosha2::hash256(src_vect.begin(), src_vect.end(), hash.begin(), hash.end());
+            picosha2::hash256(src_vect.begin(), src_vect.end(),
+                              hash.begin(), hash.end());
             PICOSHA2_CHECK_EQUAL_BYTES(ans, hash);
         }
         {
@@ -215,7 +228,8 @@ void test(){
         }
         {
             std::string hash_hex_str;
-            picosha2::hash256_hex_string(src_vect.begin(), src_vect.end(), hash_hex_str);
+            picosha2::hash256_hex_string(src_vect.begin(), src_vect.end(),
+                                         hash_hex_str);
             PICOSHA2_CHECK_EQUAL(ans_hex_str, hash_hex_str);
         }
         {
@@ -246,7 +260,7 @@ void test(){
                 std::istreambuf_iterator<char>());
         std::size_t i = 0;
         std::size_t block_size = file_str.length()/10;
-        for(i = 0; i+block_size <= file_str.length(); i+=block_size){
+        for (i = 0; i+block_size <= file_str.length(); i+=block_size){
             hasher.process(file_str.begin()+i, file_str.begin()+i+block_size);
         }
         hasher.process(file_str.begin()+i, file_str.end());
@@ -255,7 +269,8 @@ void test(){
         get_hash_hex_string(hasher, one_by_one_hex_string);
 
         std::string hex_string;
-        picosha2::hash256_hex_string(file_str.begin(), file_str.end(), hex_string);
+        picosha2::hash256_hex_string(file_str.begin(), file_str.end(),
+                                     hex_string);
         PICOSHA2_CHECK_EQUAL(one_by_one_hex_string, hex_string);
 
     }
@@ -267,7 +282,7 @@ void test(){
                     std::istreambuf_iterator<char>());
             std::size_t i = 0;
             std::size_t block_size = file_str.length()/10;
-            for(i = 0; i+block_size <= file_str.length(); i+=block_size){
+            for (i = 0; i+block_size <= file_str.length(); i+=block_size){
                 hasher.process(file_str.begin()+i, file_str.begin()+i+block_size);
             }
             hasher.process(file_str.begin()+i, file_str.end());
