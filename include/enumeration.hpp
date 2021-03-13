@@ -22,7 +22,7 @@
 bool work = true;
 std::vector<nlohmann::json> json_value;
 nlohmann::json j;
-std::string filename;
+const std::string filename;
 
 void enumeration() {
   const std::string null_string = "0000";
@@ -64,5 +64,4 @@ void create_file_json(){
   }
   file_json.close();
 }
-
 #endif  // INCLUDE_ENUMERATION_HPP_

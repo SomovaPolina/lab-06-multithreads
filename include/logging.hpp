@@ -11,7 +11,6 @@
 const unsigned ten_MiB = 10 * 1024 * 1024;
 void init()
 {
-
   const std::string format = "%TimeStamp% <%Severity%> (%ThreadID%): %Message%";
   auto sink_to_file_trace = boost::log::add_file_log(
       boost::log::keywords::file_name = "logs/trace/log_trace_%N.log",
@@ -35,5 +34,4 @@ void init()
   boost::log::add_common_attributes();
 
 }
-
-#endif  // LAB_06_MULTITHREADS_LOGGING_HPP
+#endif  // INCLUDE_LOGGING_HPP_
