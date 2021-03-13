@@ -1,23 +1,21 @@
 #include <iostream>
-
-#include "PicoSHA2/picosha2.h"
+#include "../picosha2.h"
 
 void CalcAndOutput(const std::string& src){
-	std::cout << "src : \"" << src << "\"\n";
-	std::cout << "hash: " << picosha2::hash256_hex_string(src) << "\n" << std::endl;
+  std::cout << "src : \"" << src << "\"\n";
+  std::cout << "hash: " << picosha2::hash256_hex_string(src) << "\n" << std::endl;
 }
 
 int main(int argc, char* argv[])
 {
-	if(argc == 1){
-		CalcAndOutput("");
-	}
-	else{
-		for(int i = 1; i < argc; ++i){
-			CalcAndOutput(argv[i]);
-		}
-	}
+  if(argc == 1){
+    CalcAndOutput("");
+  }
+  else{
+    for(int i = 1; i < argc; ++i){
+      CalcAndOutput(argv[i]);
+    }
+  }
 
-    return 0;
+  return 0;
 }
-
