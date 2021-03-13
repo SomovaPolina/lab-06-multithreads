@@ -1,8 +1,8 @@
-// Created by polinka on 13.03.2021
-
+//
+// Created by polinka on 13.03.2021.
+//
 #ifndef LAB_06_MULTITHREADS_ENUMERATION_HPP
 #define LAB_06_MULTITHREADS_ENUMERATION_HPP
-
 #include <atomic>
 #include <boost/log/trivial.hpp>
 #include <cstdlib>
@@ -21,7 +21,6 @@
 #include <locale>
 #include <boost/log/support/date_time.hpp>
 #include <boost/date_time/gregorian/greg_month.hpp>
-
 bool work = true;
 std::vector<nlohmann::json> json_value;
 nlohmann::json j;
@@ -38,10 +37,10 @@ void enumeration() {
     if (hash_string.substr(hash_string.size() - null_string.size()) ==
         null_string) {
       BOOST_LOG_TRIVIAL(info)
-          << "  found value: ["
-          << input_rand
-          << "] hash is ["
-          << hash_string << " ]";
+        << "  found value: ["
+        << input_rand
+        << "] hash is ["
+        << hash_string << " ]";
       j = {
           {"timestamp", time_stamp},
           {"hash is", hash_string},
@@ -51,10 +50,10 @@ void enumeration() {
 
     } else {
       BOOST_LOG_TRIVIAL(trace)
-          << "  found value ["
-          << input_rand
-          << "] hash is ["
-          << hash_string << " ]";
+        << "  found value ["
+        << input_rand
+        << "] hash is ["
+        << hash_string << " ]";
 
     }
   }

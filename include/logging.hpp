@@ -4,7 +4,6 @@
 
 #ifndef LAB_06_MULTITHREADS_LOGGING_HPP
 #define LAB_06_MULTITHREADS_LOGGING_HPP
-
 #include <boost/log/expressions/keyword_fwd.hpp>
 #include <boost/log/expressions/keyword.hpp>
 #include <boost/log/expressions/attr_fwd.hpp>
