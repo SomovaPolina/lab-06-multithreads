@@ -84,10 +84,10 @@ void input_hex(std::istream& is, OutIter first, OutIter last){
         if ('0' <= c && c <= '9')
         {
             buffer.push_back(c-'0');
-        } else
-        if ('a' <= c && c <= 'f')
-        {
-            buffer.push_back(c-'a'+10);
+        } else {
+          if ('a' <= c && c <= 'f') {
+            buffer.push_back(c - 'a' + 10);
+          }
         }
     }
 }
@@ -165,7 +165,7 @@ void test(){
             picosha2::hash256(src_str.begin(), src_str.end(), hash_c_array,
                               hash_c_array+picosha2::k_digest_size);
             std::vector<unsigned char> hash
-                (hash_c_array,hash_c_array+picosha2::k_digest_size);
+                (hash_c_array, hash_c_array+picosha2::k_digest_size);
             PICOSHA2_CHECK_EQUAL_BYTES(ans, hash);
         }
         {
