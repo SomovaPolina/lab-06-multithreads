@@ -2,6 +2,7 @@
 
 #ifndef LAB_06_MULTITHREADS_ENUMERATION_HPP
 #define LAB_06_MULTITHREADS_ENUMERATION_HPP
+
 #include <atomic>
 #include <boost/log/trivial.hpp>
 #include <cstdlib>
@@ -20,6 +21,7 @@
 #include <locale>
 #include <boost/log/support/date_time.hpp>
 #include <boost/date_time/gregorian/greg_month.hpp>
+
 bool work = true;
 std::vector<nlohmann::json> json_value;
 nlohmann::json j;
