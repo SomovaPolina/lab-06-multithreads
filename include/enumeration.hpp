@@ -22,7 +22,11 @@
 bool work = true;
 std::vector<nlohmann::json> json_value;
 nlohmann::json j;
-static std::string const filename;
+
+std::string& getFilename(){
+  static std::string filename = "filename";
+  return filename;
+}
 
 void enumeration() {
   const std::string null_string = "0000";
@@ -58,7 +62,7 @@ void enumeration() {
 
 void create_file_json(){
   std::ofstream file_json;
-  file_json.open(filename + ".json");
+  file_json.open(getFilename() + ".json");
   for (unsigned i = 0; i < json_value.size(); ++i){
     file_json << json_value[i].dump(4) << "\n";
   }
