@@ -18,6 +18,7 @@ void init()
       boost::log::keywords::format = format);
   sink_to_file_trace->set_filter(
       boost::log::trivial::severity == boost::log::trivial::trace);
+
   auto sink_to_file_info = boost::log::add_file_log(
       boost::log::keywords::file_name = "logs/info/log_info_%N.log",
       boost::log::keywords::rotation_size = ten_MiB,
