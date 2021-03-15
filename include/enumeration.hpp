@@ -27,7 +27,6 @@ std::string& getFilename(){
   static std::string filename = "filename";
   return filename;
 }
-
 void enumeration() {
   const std::string null_string = "0000";
   while (work)
