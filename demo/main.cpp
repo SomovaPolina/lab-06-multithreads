@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   if (argc == 2) {thread_count = boost::lexical_cast<unsigned>(argv[1]);}
   else if (argc == 3)
   {thread_count = boost::lexical_cast<unsigned>(argv[1]);
-    detFilename() = boost::lexical_cast<std::string>(argv[2]);
+    getFilename() = boost::lexical_cast<std::string>(argv[2]);
   } else throw std::runtime_error("Wrong parameters!");
 
   BOOST_LOG_TRIVIAL(trace) << "  THREADS COUNT: " << thread_count;
